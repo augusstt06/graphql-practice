@@ -53,8 +53,9 @@
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": [
-      "pnpm prettier --cache --write",
-      "pnpm eslint --cache --fix --max-warnings=0"
+      "prettier --cache --write",
+      "eslint-config-prettier './src/**/*.{js,jsx,ts,tsx}'",
+      "eslint --cache --fix --max-warnings=0"
     ]
   }
 }
