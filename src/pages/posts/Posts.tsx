@@ -20,7 +20,7 @@ const Posts = () => {
   };
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error Occured: {error.message}</p>;
-  dd;
+
   return (
     <section>
       <section>
