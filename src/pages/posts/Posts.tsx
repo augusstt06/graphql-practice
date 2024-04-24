@@ -7,13 +7,14 @@ import { ADD_POST, GET_POSTS } from './query';
 
 const Posts = () => {
   const [addPost] = useMutation(ADD_POST);
-  const [newPost, setNewPost] = useState({ userId: 1, title: '', body: '' });
+  const [newPost, setNewPost] = useState({ title: '', body: '' });
   const { loading, error, data } = useQuery(GET_POSTS);
 
   const handleAddPost = async () => {
     try {
-      await addPost({ variables: newPost, refetchQueries: [{ query: GET_POSTS }] });
-      setNewPost({ userId: 1, title: '', body: '' });
+      const userId = Math.floor(Math.random() * 100) + 1;
+      await addPost({ variables: { userId, ...newPost }, refetchQueries: [{ query: GET_POSTS }] });
+      setNewPost({ title: '', body: '' });
     } catch (err) {
       console.log(err);
     }
@@ -44,7 +45,11 @@ const Posts = () => {
       </section>
       <ul>
         {data.posts.length !== 0 ? (
-          data.posts.map((data: GQLPosts) => <li key={data.id}>{data.title}</li>)
+          data.posts.map((data: GQLPosts) => (
+            <li key={data.id}>
+              {data.userId}::{data.title}
+            </li>
+          ))
         ) : (
           <h1>No Data</h1>
         )}
