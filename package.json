@@ -52,9 +52,9 @@
     "vite": "^5.1.4"
   },
   "lint-staged": {
-    "**/.{js,jsx,ts,tsx}": [
-      "prettier --cache --write",
-      "eslint --cache --fix --max-warnings=0"
+    "*.{js,jsx,ts,tsx}": [
+      "pnpm prettier --cache --write",
+      "pnpm eslint --cache --fix --max-warnings=0"
     ]
   }
 }
